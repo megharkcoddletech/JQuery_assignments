@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <form>
+        <h2>FORM VALIDATION</h2>
+        <label for="userName">Name:</label>
+        <input type="text" id="userName"><br>
+        <p class="errorName"></p>
+        <br><br>
+        <label for="address">Address:</label>
+        <textarea id="address" rows="2" cols="30"></textarea><br>
+        <p class="errorAddress"></p>
+        <br><br>
+        <label for="dob">DOB:</label>
+        <input type="date" id="dob"><br>
+        <p class="errorDOB"></p>
+        <br><br>
+        <label for="userAge" class="name">Age:</label>
+        <select id="userAge" >
+            <option></option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select><br><br>
+        <p class="errorAge"></p>
+        <label for="gender" id="gender">Gender:</label>
+        <label>
+        <input type="radio" id="male" value="male" name="gender">Male</label>
+        <label>
+        <input type="radio" id="female" value="female" name="gender">Female</label><br>
+        <p class="errorGender"></p>
+        <br><br>
+        <input type="checkbox" id="terms">
+        <label for="terms">I agree to the terms and conditions</label><br>
+        <p class="errorCheck"></p><br>
+        <button type="submit" id="btnSubmit">Submit</button><br><br>
+        <br>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="JavaScript/script.js"></script>
+</body>
+</html>
