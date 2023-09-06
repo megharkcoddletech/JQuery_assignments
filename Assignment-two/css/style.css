@@ -1,0 +1,50 @@
+h1 {
+    text-align: center;
+}
+
+.imageContainer {
+    margin: auto;
+    width: 80%;
+    height: 500px;
+    background-color: rgb(241, 234, 234);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.imgSlider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 400px;
+    position: relative;
+}
+
+img {
+    height: 80%;
+    width: 80%;
+    object-fit: cover;
+    position: absolute;
+    display: none;
+}
+
+.bullets {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(223, 223, 228);
+    margin: 0 5px;
+    border: 1px solid rgb(202, 198, 198);
+}
+
+.bullets_main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.active {
+    display: block;
+}
