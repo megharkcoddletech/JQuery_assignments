@@ -63,7 +63,7 @@ $(document).ready(function () {
         },
     ];
     let viewProduct = $('.viewProduct');
-
+    
     for (let i = 0; i < items.length; i++) {
         createElement(i);
     }
@@ -154,20 +154,20 @@ $(document).ready(function () {
                 viewCart.hide();
                 value = 1;
                 button.show();
-            })
+            })        
         });
 
-        $('.search').keyup(function () {
-            let search = $('.search').val().trim().toLowerCase();
-            proName.filter(function () {
-                if ($('.search').text().toLowerCase().indexOf(search) > -1) {
-                    pro.show();
-                }
-                else {
-                    pro.hide();
-                }
-            })
-
-        });
+    $('.search').keyup(function () {
+        let search = $('.search').val().trim().toLowerCase();
+        proName.filter(function(){
+          if( $(this).text().toLowerCase().indexOf(search) > -1){
+            pro.show();
+          }
+          else{
+            pro.hide();
+          }
+        })
+     
+});
     }
 }); 
