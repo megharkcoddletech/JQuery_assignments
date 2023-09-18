@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <h2>SHoppee..</h2>
+        <input type="search" placeholder="search" class="search">
+        <select class="criteria">
+            <option value="all" selected>All Items</option>
+            <option value="lowToHigh">Low to High</option>
+            <option value="HighToLow">High to low</option>
+            <option value="rating">Rating</option>
+        </select>
+        <select class="category">
+            <option value="all" selected>All Categories</option>
+            <option value="smartphones"> smartPhone</option>
+            <option value="laptops">Laptops</option>
+            <option value="home-decoration">home-decoration</option>
+            <option value="groceries">groceries</option>
+            <option value="skincare">skincare</option>
+            <option value="fragrances">fragrances</option>
+        </select>
+    </header>
+    <div class="main">
+        <div class="viewProduct">
+        </div>
+        <div class="cart">
+            <h4>CART
+                <i class="fa fa-shopping-cart"></i>
+            </h4>
+            <div class="viewCartMain">
+                <p class="net">Total Price: <sapn class="netPrice"></sapn> rs</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="javaScript/script.js"></script>
+</body>
+</html>

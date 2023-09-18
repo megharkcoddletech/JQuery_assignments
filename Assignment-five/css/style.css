@@ -1,0 +1,49 @@
+header{
+    background-color: rgb(110, 76, 48);
+    padding: 1px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.main{
+    display: flex;
+}
+.cart{
+    background-color: rgb(155, 119, 115);;
+    flex: 1;  
+}
+.viewProduct{
+    background-color: rgb(190, 197, 197);
+    flex: 2;
+}
+.cart  h4{
+    font-size: 30px;
+    text-align: center;
+}
+.pro{
+    width: 250px;
+    min-height: 300px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 25px solid rgb(209, 215, 219);
+}
+.proHead, .cartHead{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button{
+    margin: 0 0px 0 50px ;
+    padding: 5px 15px;
+}
+.inputQuantity{
+     width: 100px;
+}
+.viewCartMain{
+    display: none;
+}
+
