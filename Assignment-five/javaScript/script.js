@@ -211,49 +211,59 @@ $(document).ready(function () {
                 });
             }
             $(".criteria").change(function () {
-                let selectValue = $(".criteria").val();
-                if (selectValue === "all") {
-                    viewProduct.empty();
-                    displayProducts(Product);
-                    loadMoreItems(Product);
-                }
-
-                if (selectValue === "lowToHigh") {
-                    Product.sort((a, b) => a.price - b.price);
-                    viewProduct.empty();
-                    displayProducts(Product);
-                    loadMoreItems(Product);
-                } else if (selectValue === "HighToLow") {
-                    Product.sort((a, b) => b.price - a.price);
-                    viewProduct.empty()
-                    displayProducts(Product);
-                    loadMoreItems(Product);
-
-                } else if (selectValue === "rating") {
-                    Product.sort((a, b) => a.rating - b.rating);
-                    viewProduct.empty()
-                    displayProducts(Product);
-                    loadMoreItems(Product);
-                }
+                sortItems(Product);
+                categoryfunction(Product);
             });
             $(".category").change(function () {
-                let selectCategory = $(".category").val();
+                sortItems(Product);
+                categoryfunction(Product);
+            });
 
+              
+            function sortItems() {
+                let selectValue = $(".criteria").val();
+                    if (selectValue === "all") {
+                        viewProduct.empty();
+                        displayProducts(Product);
+                        loadMoreItems(Product);
+                    }
+    
+                    if (selectValue === "lowToHigh") {
+                        Product.sort((a, b) => a.price - b.price);
+                        viewProduct.empty();
+                        displayProducts(Product);
+                        loadMoreItems(Product);
+                    } else if (selectValue === "HighToLow") {
+                        Product.sort((a, b) => b.price - a.price);
+                        viewProduct.empty()
+                        displayProducts(Product);
+                        loadMoreItems(Product);
+    
+                    } else if (selectValue === "rating") {
+                        Product.sort((a, b) => a.rating - b.rating);
+                        viewProduct.empty()
+                        displayProducts(Product);
+                        loadMoreItems(Product);
+                    }
+    
+            }
+
+            function categoryfunction() {
+                let selectCategory = $(".category").val();
                 if (selectCategory === "all") {
                     displayProducts(Product);
                     loadMoreItems(Product);
                 }
-
+    
                 else {
                     const filterCategory = Product.filter(item => item.category === selectCategory);
                     viewProduct.empty();
                     displayProducts(filterCategory);
                     loadMoreItems(filterCategory);
                 }
-
-            });
+            }
+             
             displayProducts(Product);
         }
-
     });
-});
+});0
