@@ -20,7 +20,6 @@ $(document).ready(function () {
                     if (itemCounter === 3) {
                         break;
                     }
-
                 }
             }
             function loadMoreItems(Product) {
@@ -35,8 +34,8 @@ $(document).ready(function () {
             $(window).scroll(scrollFunction)
             function scrollFunction() {
                 length = Product.length;
-                if ($(window).scrollTop() + $(window).height() + 300 >= $(document).height()) {
-                    loadMoreItems(Product)
+                if ($(window).scrollTop() + $(window).height() + 200 >= $(document).height()) {
+                    loadMoreItems(Product);
                 }
             }
             function createElement(productData) {
@@ -68,7 +67,6 @@ $(document).ready(function () {
                     imgcontainer.append(img1);
                     img1.attr('src', item);
                     img1.css({ "width": "100%", "height": "100%", "object-fit": "cover", "margin": "5px", "box-shadow": "1px 1px 1px whitesmoke" });
-
                 });
                 let proHead = $(document.createElement('div'));
                 pro.append(proHead);
@@ -151,23 +149,22 @@ $(document).ready(function () {
                     cartItem.text(productData.title);
                     totalPrice.text(priceDiscount);
                     inputQuantity.text(value);
-                    n = totalPrice.text()
+                    n = totalPrice.text  ()
                     np.push(n);
                     console.log(n);
                     for (i = 0; i < np.length; i++) {
                         sum += parseFloat(np[i]);
                         console.log("sum " + sum);
-                        netPrice.text(sum)
+                        netPrice.text(sum);
                     }
                     button.hide();
 
-                    increment.click(function () {
+                    increment.click(function () {   
                         value++;
                         inputQuantity.text(value);
                         totalPrice.text(priceDiscount * value);
                         sum = sum + (priceDiscount * value);
-
-                        netPrice.text(sum)
+                        netPrice.text(sum);
                     });
 
                     decrement.click(function () {
@@ -182,12 +179,13 @@ $(document).ready(function () {
                             button.show();
                             viewCart.hide();
                             totalPrice.text(priceDiscount);
-                            sum = 0;
+                            sum = 0; 
                             netPrice.text(sum);
                             if ($(".viewCart").children().length === 0) {
                                 console.log("empty");
                                 sum = 0;
                                 netPrice.text(sum)
+                                console.log(sum);
                             }
                         }
                     });
@@ -217,20 +215,25 @@ $(document).ready(function () {
                 if (selectValue === "all") {
                     viewProduct.empty();
                     displayProducts(Product);
+                    loadMoreItems(Product);
                 }
 
                 if (selectValue === "lowToHigh") {
                     Product.sort((a, b) => a.price - b.price);
                     viewProduct.empty();
                     displayProducts(Product);
+                    loadMoreItems(Product);
                 } else if (selectValue === "HighToLow") {
                     Product.sort((a, b) => b.price - a.price);
                     viewProduct.empty()
                     displayProducts(Product);
+                    loadMoreItems(Product);
+
                 } else if (selectValue === "rating") {
                     Product.sort((a, b) => a.rating - b.rating);
                     viewProduct.empty()
                     displayProducts(Product);
+                    loadMoreItems(Product);
                 }
             });
             $(".category").change(function () {
@@ -238,12 +241,14 @@ $(document).ready(function () {
 
                 if (selectCategory === "all") {
                     displayProducts(Product);
+                    loadMoreItems(Product);
                 }
 
                 else {
                     const filterCategory = Product.filter(item => item.category === selectCategory);
                     viewProduct.empty();
                     displayProducts(filterCategory);
+                    loadMoreItems(filterCategory);
                 }
 
             });
