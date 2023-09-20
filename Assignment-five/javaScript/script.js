@@ -7,6 +7,7 @@ $(document).ready(function () {
     let n = 0;
     let np = [];
     let sum = 0;
+    let buttonCounter = 0;
     $.ajax({
         type: 'GET',
         url: "https://dummyjson.com/products",
@@ -112,9 +113,11 @@ $(document).ready(function () {
 
                 let value = 1;
                 button.click(function () {
+                    $(".net").css({ "display": "block" })
+                    buttonCounter++;
 
                     let netPrice = $('.netPrice');
-                    netPrice.text(sum);
+                    netPrice.text("0");
                     $(".viewCartMain").show();
                     let viewCart = $(document.createElement('div'));
                     $(".viewCartMain").append(viewCart);;
@@ -124,9 +127,6 @@ $(document).ready(function () {
                     cartHead.css({ "display": "flex", "align-items": "center" })
                     let cartItem = $(document.createElement('h4'));
                     cartHead.append(cartItem);
-                    let remove = $(document.createElement('button'));
-                    cartHead.append(remove);
-                    remove.text('Remove');
                     let row = $(document.createElement('div'));
                     viewCart.append(row);
                     row.css({ "display": "flex", "align-items": "center" })
@@ -149,21 +149,28 @@ $(document).ready(function () {
                     cartItem.text(productData.title);
                     totalPrice.text(priceDiscount);
                     inputQuantity.text(value);
-                    n = totalPrice.text  ()
-                    np.push(n);
-                    console.log(n);
-                    for (i = 0; i < np.length; i++) {
-                        sum += parseFloat(np[i]);
-                        console.log("sum " + sum);
-                        netPrice.text(sum);
-                    }
                     button.hide();
+                    let n = totalPrice.text();
+                    np.push(n);
+                    console.log("or + " + np);
+                    for (let i = 0; i < np.length; i++) {
+                        if (i > 0) {
+                            sum += parseInt(np[i]) - parseInt(np[i - 1])
+                            netPrice.text(sum);
+                        }
+                        else {
+                            sum += parseInt(np[i]);
+                            netPrice.text(sum);
 
-                    increment.click(function () {   
+                        }
+
+                    }
+
+                    increment.click(function () {
                         value++;
                         inputQuantity.text(value);
                         totalPrice.text(priceDiscount * value);
-                        sum = sum + (priceDiscount * value);
+                        sum = sum + parseInt(priceDiscount);
                         netPrice.text(sum);
                     });
 
@@ -171,30 +178,34 @@ $(document).ready(function () {
                         value--;
                         inputQuantity.text(value);
                         totalPrice.text(priceDiscount * value);
-                        sum = sum - (priceDiscount * value);
+                        sum = sum - parseInt(priceDiscount);
 
                         netPrice.text(sum)
-                        if (value === 0) {
+                        if ((value === 0) && (sum === 0)) {
+                            value = 1;
+                            viewCart.hide();
+                            button.show();
+
+                        }
+
+                        if ((value === 0) && (sum != 0)) {
                             value = 1;
                             button.show();
                             viewCart.hide();
-                            totalPrice.text(priceDiscount);
-                            sum = 0; 
+                            $(this).totalPrice.text(priceDiscount);
+                            sum -= priceDiscount;
+                            netPrice.text(sum)
+
                             netPrice.text(sum);
-                            if ($(".viewCart").children().length === 0) {
-                                console.log("empty");
-                                sum = 0;
-                                netPrice.text(sum)
-                                console.log(sum);
-                            }
+                            np.splice($.inArray($(this).priceDiscount * value, np), 1);
+                        }
+                        if ($(".viewCartMain").children().length === 0) {
+                            console.log("empty");
                         }
                     });
 
-                    remove.click(function () {
-                        viewCart.hide();
-                        value = 1;
-                        button.show();
-                    });
+                    console.log("sum + " + sum);
+
                 });
 
                 $('.search').keyup(function () {
@@ -219,33 +230,36 @@ $(document).ready(function () {
                 categoryfunction(Product);
             });
 
-              
+
             function sortItems() {
                 let selectValue = $(".criteria").val();
-                    if (selectValue === "all") {
-                        viewProduct.empty();
-                        displayProducts(Product);
-                        loadMoreItems(Product);
+
+                if (selectValue === "lowToHigh") {
+                    Product.sort((a, b) => a.price - b.price);
+                    viewProduct.empty();
+                    displayProducts(Product);
+                    loadMoreItems(Product);
+                } else if (selectValue === "HighToLow") {
+                    Product.sort((a, b) => b.price - a.price);
+                    viewProduct.empty()
+                    displayProducts(Product);
+                    loadMoreItems(Product);
+
+                } else if (selectValue === "rating") {
+                    Product.sort((a, b) => a.rating - b.rating);
+                    viewProduct.empty();
+                    displayProducts(Product);
+                    loadMoreItems(Product);
+                }
+                if (selectValue === "all") {
+                    if (Product.sort((a, b) => a.rating - b.rating)) {
+
                     }
-    
-                    if (selectValue === "lowToHigh") {
-                        Product.sort((a, b) => a.price - b.price);
-                        viewProduct.empty();
-                        displayProducts(Product);
-                        loadMoreItems(Product);
-                    } else if (selectValue === "HighToLow") {
-                        Product.sort((a, b) => b.price - a.price);
-                        viewProduct.empty()
-                        displayProducts(Product);
-                        loadMoreItems(Product);
-    
-                    } else if (selectValue === "rating") {
-                        Product.sort((a, b) => a.rating - b.rating);
-                        viewProduct.empty()
-                        displayProducts(Product);
-                        loadMoreItems(Product);
-                    }
-    
+                    viewProduct.empty();
+                    displayProducts(Product);
+                    loadMoreItems(Product);
+                }
+
             }
 
             function categoryfunction() {
@@ -254,7 +268,7 @@ $(document).ready(function () {
                     displayProducts(Product);
                     loadMoreItems(Product);
                 }
-    
+
                 else {
                     const filterCategory = Product.filter(item => item.category === selectCategory);
                     viewProduct.empty();
@@ -262,8 +276,8 @@ $(document).ready(function () {
                     loadMoreItems(filterCategory);
                 }
             }
-             
+
             displayProducts(Product);
         }
     });
-});0
+}); 
